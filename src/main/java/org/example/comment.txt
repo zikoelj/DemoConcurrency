@@ -1,0 +1,92 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+//import java.util.concurrent.locks.ReentrantLock;
+
+//public class Main {
+//    private static final int MAX_ITEMS = 5;
+//    private static Queue<String> buffer2 = new LinkedList<>();
+//    private static Lock lock = new ReentrantLock();
+//    private static Condition notFull = lock.newCondition();
+//    private static Condition notEmpty = lock.newCondition();
+//
+//    public static void main(String[] args) {
+//        new Thread(() -> producer()).start();
+//        new Thread(() -> consumer()).start();
+//    }
+//
+//    static void producer() {
+//        for (int i = 0; i < 10; i++) {
+//            lock.lock();
+//            try {
+//                while (buffer2.size() == MAX_ITEMS) {
+//                    System.out.println("Buffer plein, producteur attend...");
+//                    notFull.await();
+//                }
+//                String item = "Item-" + i;
+//                buffer2.add(item);
+//                System.out.println("Produit : " + item);
+//                notEmpty.signal(); // Réveille le consommateur
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } finally {
+//                lock.unlock();
+//            }
+//            try { Thread.sleep(100); } catch (InterruptedException e) {}
+//        }
+//    }
+//
+//    static void consumer() {
+//        for (int i = 0; i < 10; i++) {
+//            lock.lock();
+//            try {
+//                while (buffer2.isEmpty()) {
+//                    System.out.println("Buffer vide, consommateur attend...");
+//                    notEmpty.await();
+//                }
+//                String item = buffer2.remove();
+//                System.out.println("Consommé : " + item);
+//                notFull.signal(); // Réveille le producteur
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } finally {
+//                lock.unlock();
+//            }
+//            try { Thread.sleep(200); } catch (InterruptedException e) {}
+//        }
+//    }
+//}
+
+//import java.util.concurrent.locks.ReentrantLock;
+//
+//public class Main {
+//    private static final ReentrantLock lock = new ReentrantLock();
+//
+//    public static void main(String[] args) {
+//        // Création de 3 threads
+//        Thread t1 = new Thread(() -> worker("Thread 1"));
+//        Thread t2 = new Thread(() -> worker("Thread 2"));
+//        Thread t3 = new Thread(() -> worker("Thread 3"));
+//            t1.start();
+//            t2.start();
+//            t3.start();
+//    }
+//
+//    private static void worker(String name) {
+//        lock.lock();
+//        try {
+//            System.out.println(name + " a acquis le verrou");
+//            Thread.sleep(1000); // Simulation de travail
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } finally {
+//            System.out.println(name + " libère le verrou");
+//            lock.unlock();
+//        }
+//    }
+//}
+
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
