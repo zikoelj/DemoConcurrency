@@ -9,3 +9,11 @@
   - IntelliJ IDEA
   - Eclipse
   - Visual Studio Code (with Java Extension Pack)
+
+---
+
+## 📦 Clone the Project
+
+```bash
+git clone https://github.com/zikoelj/DemoConcurrency.git
+cd DemoConcurrency
